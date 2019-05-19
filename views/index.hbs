@@ -1,0 +1,36 @@
+<main class="container">
+    
+    <div class="menuOpcao">
+            <button type="button" class="btn btn-primary adicionarProdutoJs">Adicionar Produto</button>
+    </div>    
+    <table id="example" class="table table-hover table-bordered" style="width:100%" >
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Preço</th>
+                <th scope="col">Ação</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each products}}
+            <tr>
+                <th scope="row">{{this.id}}</th>
+                <td>{{this.name}}</td>
+                <td>{{this.description}}</td>
+                <td>{{this.price}}</td>
+                <td>                    
+                    <button type="button" class="btn btn-success editarProdutoJs" data-id={{this.id}}>Editar</button>
+                    <button type="button" class="btn btn-danger excluirProdutoJs" data-id={{this.id}} data-name={{this.name}}>Excluir</button>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+
+
+
+
+</main>

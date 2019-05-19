@@ -1,18 +1,48 @@
 <main class="container">
-    <button type="button" class="btn btn-primary adicionarProdutoJs">Adicionar Produto</button>
+    <h4>Editando o ID: {{product.0.id}}</h4>
+    <form  method="post">
+        <div class="form-row">
+            <div class="col-sm-3">
+                <input class="form-control" type="text" name="name" value="{{product.0.name}}" placeholder="Nome">
+            </div>
 
-    
-    <form id="salvarProduto" method="post">
-        Name<br>
-        <input type="text" name="name" value="{{product.0.name}}"><br>
-        Description<br>
-        <input type="text" name="description" value="{{product.0.description}}"><br>
-        Price<br>
-        <input type="number" min="1" step="any" name="price" value="{{product.0.price}}"><br><br>
-        <input type="submit" value="Edit Product"><br><br>
+            <div class="col-sm-4">
+                <input class="form-control" type="text" name="description" value="{{product.0.description}}"
+                    placeholder="Descrição">
+            </div>
+
+            <div class="col-sm-3">
+                <input class="form-control" type="text" min="1" step="any" name="price" value="{{product.0.price}}"
+                    placeholder="Preço">
+            </div>
+
+            <div class="col-sm-2">
+                <button class="btn btn-success sm-2 float-right updateProdutoJs" type="submit" data-id={{product.0.id}} data-name={{product.0.name}}>Salvar Alteração</button>
+            </div>
+        </div>
     </form>
+    <br>
 
-    <button class="example1" data="{{product.0.id}}">Delete Product</button>
-
-    <h2>Comentário mongo DB</h2>
+    <form class="comentarProduto" method="post" action="/comment/">
+        <input type="hidden" class="form-control" name="produto" rows="2" value={{product.0.id}}>
+        <div class="form-group">
+            <label for="comentTextarea1">Comentar</label>
+            <textarea class="form-control" name="comentario" id="comentTextarea1" rows="2"></textarea>
+        </div>
+        <a href="/" class="btn btn-danger mb-2 float-left">Voltar</a>
+        <button type="submit" class="btn btn-primary mb-2 float-right">Comentar</button>
+    </form>
 </main>
+
+<br>
+<br>
+
+<div class="container">
+    <h4>Comentário(s)</h4>
+    <ul class="list-group listaComentario">
+        {{#each comments}}
+        <li class="list-group-item">{{this.comment}} <span
+                class="badge badge-warning float-right">{{this.author}}</span></li>
+        {{/each}}
+    </ul>
+</div>

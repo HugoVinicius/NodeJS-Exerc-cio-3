@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const db = require('./Connection');
 
 const commentSchema = new mongoose.Schema({
     author: {
@@ -7,6 +8,9 @@ const commentSchema = new mongoose.Schema({
     comment: {
         type: String
     },
+    id_produto:{
+        type: String
+    }
 })
 
 const Comment = mongoose.model('Comment', commentSchema)

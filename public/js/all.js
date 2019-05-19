@@ -149,3 +149,55 @@ $(document).on('click', '.adicionarProdutoJs', function (e) {
     });
 
 });
+
+function listarComentario(){
+    $('.listaComentario').empty();
+
+    $.ajax({
+        url: '/comment/',
+        type: 'GET',
+        dataType: 'json',
+        async: false,
+        success: function (result) {
+            toastr["success"]("Produto adicionado com sucesso");
+            
+        },
+        error: function (result) {
+        }
+    });
+}
+
+
+$(document).on('click', '.updateProdutoJs', function (e) {
+    var idProduto = $(this).attr('data-id'),
+    nameP=$("input[name=name]").val(),
+    descriptionP=$("input[name=description]").val(),
+    priceP=$("input[name=price]").val();
+
+    var produtoAdd = { 
+        id: idProduto,
+        name: nameP, 
+        description: descriptionP, 
+        price: priceP
+     };
+
+     console.log("Produto Adicionar: " + JSON.stringify(produtoAdd));
+
+     $.ajax({
+         url: '/product',
+         type: 'PUT',
+         data: {dataJson: JSON.stringify(produtoAdd)},
+         dataType: 'json',
+         async: false,
+         success: function (result) {
+             toastr["success"]("Produto adicionado com sucesso");
+             location.href = 'http://localhost:3000/';
+             
+         },
+         error: function (result) {
+            location.href = 'http://localhost:3000/';
+         }
+     });
+
+     
+});
